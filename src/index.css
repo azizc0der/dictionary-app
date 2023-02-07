@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.dark-theme {
+    --clr-bcg: #282c35;
+    --clr-font: #fff;
+    --clr-primary: #ffa7c4;
+}
+
+.light-theme {
+    --clr-bcg: #fff;
+    --clr-font: #282c35;
+    --clr-primary: #d23669;
+}
+
+body {
+    background: var(--clr-bcg);
+    color: var(--clr-font);
+}
