@@ -14,8 +14,6 @@ const Theme = () => {
   const [theme, setTheme] = useState(getStorageTheme())
   const [themeImage, setThemeImage] = useState(false)
 
-  const handleThemImage = () => {}
-
   const toggleTheme = () => {
     setThemeImage(!themeImage)
     if (theme === 'light-theme') {
