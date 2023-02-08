@@ -12,7 +12,7 @@ const Dictionary = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       makeApiCall(inputValue)
-    }, 10)
+    }, 1000)
 
     return () => {
       clearTimeout(timeoutId)
