@@ -3,6 +3,7 @@ import { countryCodes } from '../data/country-code'
 import Alert from '../images/alert.png'
 import Search from '../images/search.svg'
 import Theme from './theme'
+import NotFound from '../images/not-found.png'
 
 const Dictionary = () => {
   const [inputValue, setInputValue] = useState('')
@@ -11,7 +12,7 @@ const Dictionary = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       makeApiCall(inputValue)
-    }, 2000)
+    }, 10)
 
     return () => {
       clearTimeout(timeoutId)
@@ -56,7 +57,7 @@ const Dictionary = () => {
       <>
         {wordMeanings.length > 0 ? (
           <div className="flex flex-col gap-[20px] rounded-[10px] mt-[20px]">
-            {wordMeanings.map((wordMeaning, wordIndex) => {
+            {wordMeanings?.map((wordMeaning, wordIndex) => {
               const { word, meanings, phonetic, phonetics } = wordMeaning
               let id = wordIndex + 1
               return (
@@ -228,7 +229,11 @@ const Dictionary = () => {
             })}
           </div>
         ) : (
-          <div></div>
+          <img
+            className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]"
+            src={NotFound}
+            alt="NotFound"
+          />
         )}
       </>
     </div>
