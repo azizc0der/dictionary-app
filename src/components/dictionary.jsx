@@ -9,16 +9,6 @@ const Dictionary = () => {
   const [inputValue, setInputValue] = useState('')
   const [wordMeanings, setWordMeanings] = useState([])
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      makeApiCall(inputValue)
-    }, 1000)
-
-    return () => {
-      clearTimeout(timeoutId)
-    }
-  }, [inputValue])
-
   const handleInputChange = (event) => {
     setInputValue(event.target.value)
   }
@@ -33,6 +23,12 @@ const Dictionary = () => {
         .catch((error) => console.error(error))
     }
   }
+
+  useEffect(() => {
+    makeApiCall(inputValue)
+  }, [inputValue])
+
+  console.log(wordMeanings)
 
   return (
     <div>
@@ -55,7 +51,11 @@ const Dictionary = () => {
         <Theme />
       </div>
       <>
-        {wordMeanings.length > 0 ? (
+        {inputValue.length === 0 ? (
+          <h3 className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-[27px] text-center font-[500]">
+            Please Enter the Word!
+          </h3>
+        ) : wordMeanings.length > 0 && inputValue.length > 0 ? (
           <div className="flex flex-col gap-[20px] rounded-[10px] mt-[20px]">
             {wordMeanings?.map((wordMeaning, wordIndex) => {
               const { word, meanings, phonetic, phonetics } = wordMeaning
